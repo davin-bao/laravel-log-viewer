@@ -1,5 +1,5 @@
 {
-  "name": "davin-bao/laravel-log-viewer",
+  "name": "domain/laravel-log-viewer",
   "description": "logViewer for laravel5",
   "keywords": ["laravel", "php", "log", "viewer"],
   "license": "MIT",
