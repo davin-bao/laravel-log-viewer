@@ -1,0 +1,21 @@
+{
+  "name": "davin-bao/laravel-log-viewer",
+  "description": "logViewer for laravel5",
+  "keywords": ["laravel", "php", "log", "viewer"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "DavinBao",
+      "email": "davin.bao@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "illuminate/support": "5.1.*|5.2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "DavinBao\\LaravelLogViewer\\": "src/"
+    }
+  }
+}

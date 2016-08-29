@@ -1,0 +1,26 @@
+
+body {
+    padding: 25px;
+}
+h1 {
+    font-size: 1.5em;
+    margin-top: 0px;
+}
+
+.stack {
+    font-size: 0.85em;
+}
+.level {
+    min-width: 60px;
+}
+.date {
+    min-width: 120px;
+}
+.text {
+    word-break: break-all;
+}
+a.llv-active {
+    z-index: 2;
+    background-color: #f5f5f5;
+    border-color: #777;
+}
