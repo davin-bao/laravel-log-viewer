@@ -77,7 +77,9 @@ class LogViewer {
     {
         $log = array();
         $log_levels = self::getLogLevels();
-        $pattern = '/\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\].*/';
+        $dateTimePatten = config('laravellogviewer.datetime_pattern');
+
+        $pattern = '/'.$dateTimePatten.'.*/';
         if (!self::$file) {
             $log_file = self::getFiles();
             if(!count($log_file)) {
@@ -97,7 +99,7 @@ class LogViewer {
             for ($i=0, $j = count($h); $i < $j; $i++) {
                 foreach ($log_levels as $level_key => $level_value) {
                     if (strpos(strtolower($h[$i]), '.' . $level_value)) {
-                        preg_match('/^\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\].*?(\w+)\.' . $level_key . ': (.*?)( in .*?:[0-9]+)?$/', $h[$i], $current);
+                        preg_match('/^'.$dateTimePatten.'.*?(\w+)\.' . $level_key . ': (.*?)( in .*?:[0-9]+)?$/', $h[$i], $current);
                         if (!isset($current[3])) continue;
                         $log[] = array(
                             'context' => $current[2],

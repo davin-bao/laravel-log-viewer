@@ -87,7 +87,7 @@
 <script>
     $(document).ready(function(){
         $('#table-log').DataTable({
-            "order": [ 1, 'desc' ],
+            "order": [ 3, 'desc' ],
             "stateSave": true,
             "stateSaveCallback": function (settings, data) {
                 window.localStorage.setItem("datatable", JSON.stringify(data));
