@@ -120,6 +120,10 @@ class LogViewer {
     /**
      * @param bool $basename
      * @return array
+     * [
+     *   {'2016-08-01': []},
+     *   {'2016-08-02': []}
+     * ]
      */
     public static function getFiles($basename = false)
     {
@@ -131,7 +135,27 @@ class LogViewer {
                 $files[$k] = basename($file);
             }
         }
-        return array_values($files);
+        $fileList = array_values($files);
+        $result = [];
+
+        $pattern = '/-\d{4}-\d{2}-\d{2}/';
+        foreach($fileList as $file){
+            $matches = [];
+            if(preg_match($pattern, $file, $matches) == 1) {
+                $key = current($matches);
+                if(!isset($result[$key])){
+                    $result[$key] = [];
+                }
+                $fileKey = str_replace($key . '.log', '', $file);
+
+                $result[$key][$fileKey] = $file;
+            }else{
+                $result['global'][$file] = $file;
+            }
+        }
+        krsort($result);
+
+        return $result;
     }
 
     /**

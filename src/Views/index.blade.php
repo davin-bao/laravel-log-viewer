@@ -26,13 +26,31 @@
         <div class="col-sm-3 col-md-3 col-lg-2 sidebar">
             <h1><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> {{ trans('LaravelLogViewer::log.title') }}</h1>
             <p class="text-muted"><i></i></p>
-            <div class="list-group">
-                @foreach($files as $file)
-                    <a href="?view={{ base64_encode($file) }}" class="list-group-item @if ($current_file == $file) llv-active @endif">
-                        {{ str_limit($file, 36) }}
-                    </a>
+            <div class="panel-group" id="menu" role="tablist" aria-multiselectable="true">
+                @foreach($files as $key=>$fileList)
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#menu" href="#{{ $key }}" aria-expanded="{{ in_array($current_file, $fileList) ? 'true' : 'false' }}" class="{{ in_array($current_file, $fileList) ? '' : 'collapsed' }}" aria-controls="{{ $key }}">
+                                {{ str_limit($key, 30) }}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="{{ $key }}" class="panel-collapse collapse {{ in_array($current_file, $fileList) ? 'in' : '' }}" aria-expanded="{{ in_array($current_file, $fileList) ? 'true' : 'false' }}" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <div class="list-group">
+                                @foreach($fileList as $fileKey=>$file)
+                                    <a href="?view={{ base64_encode($file) }}" class="list-group-item @if ($current_file == $file) llv-active @endif">
+                                        {{ str_limit($fileKey, 36) }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
             </div>
+
         </div>
         <div class="col-sm-9 col-md-9 col-lg-10 table-container">
             <h3>{{ $current_file }}</h3>
