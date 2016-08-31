@@ -81,11 +81,12 @@ class LogViewer {
 
         $pattern = '/'.$dateTimePatten.'.*/';
         if (!self::$file) {
-            $log_file = self::getFiles();
+            $log_file = self::getFileList();
             if(!count($log_file)) {
                 return [];
             }
-            self::$file = $log_file[0];
+            reset($log_file);
+            self::$file = current($log_file);
         }
         if (File::size(self::$file) > self::MAX_FILE_SIZE) return null;
         $file = File::get(self::$file);
@@ -125,8 +126,7 @@ class LogViewer {
      *   {'2016-08-02': []}
      * ]
      */
-    public static function getFiles($basename = false)
-    {
+    public static function getFileList($basename = false){
         $files = glob(storage_path() . '/logs/*');
         $files = array_reverse($files);
         $files = array_filter($files, 'is_file');
@@ -135,7 +135,12 @@ class LogViewer {
                 $files[$k] = basename($file);
             }
         }
-        $fileList = array_values($files);
+        return array_values($files);
+    }
+
+    public static function getFiles($basename = false)
+    {
+        $fileList = static::getFileList($basename);
         $result = [];
 
         $pattern = '/-\d{4}-\d{2}-\d{2}/';

@@ -15,4 +15,9 @@ return array(
      | default \[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\]
      */
     'datetime_pattern' => '\[(\d{2}:\d{2}:\d{2}\.\d{6})\]',
+
+    /**
+     | all columns is level context data content
+     */
+    'show_columns' => ['level', 'date', 'content']
 );

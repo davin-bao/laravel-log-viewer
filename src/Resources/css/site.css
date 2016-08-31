@@ -11,10 +11,10 @@ h1 {
     font-size: 0.85em;
 }
 .level {
-    min-width: 60px;
+    width: 60px;
 }
 .date {
-    min-width: 120px;
+    width: 88px;
 }
 .text {
     word-break: break-all;
