@@ -89,6 +89,7 @@ class LogViewer {
             self::$file = current($log_file);
         }
         if (File::size(self::$file) > self::MAX_FILE_SIZE) return null;
+        $initMemoryUsage = memory_get_usage();
         $file = File::get(self::$file);
         preg_match_all($pattern, $file, $headings);
         if (!is_array($headings)) return $log;
@@ -102,6 +103,10 @@ class LogViewer {
                     if (strpos(strtolower($h[$i]), '.' . $level_value)) {
                         preg_match('/^'.$dateTimePatten.'.*?(\w+)\.' . $level_key . ': (.*?)( in .*?:[0-9]+)?$/', $h[$i], $current);
                         if (!isset($current[3])) continue;
+                        $currentMemoryUsage = memory_get_usage();
+                        if($currentMemoryUsage - $initMemoryUsage >= 134217728){
+                            return null;
+                        }
                         $log[] = array(
                             'context' => $current[2],
                             'level' => $level_value,
