@@ -1,8 +1,15 @@
 {
-  "name": "domain/laravel-log-viewer",
+  "name": "davinbao/laravel-log-viewer",
+  "version": "1.x-dev",
+  "version_normalized": "1.x-dev",
   "description": "logViewer for laravel5",
   "keywords": ["laravel", "php", "log", "viewer"],
   "license": "MIT",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
+  },
   "authors": [
     {
       "name": "DavinBao",
@@ -11,7 +18,7 @@
   ],
   "require": {
     "php": ">=5.5.9",
-    "illuminate/support": "5.1.*|5.2.*"
+    "illuminate/support": "5.*"
   },
   "autoload": {
     "psr-4": {
