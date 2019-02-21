@@ -1,7 +1,5 @@
 {
   "name": "davinbao/laravel-log-viewer",
-  "version": "1.0.0",
-  "version_normalized": "1.0.0",
   "description": "logViewer for laravel5",
   "keywords": ["laravel", "php", "log", "viewer"],
   "license": "MIT",
@@ -24,5 +22,7 @@
     "psr-4": {
       "DavinBao\\LaravelLogViewer\\": "src/"
     }
-  }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
